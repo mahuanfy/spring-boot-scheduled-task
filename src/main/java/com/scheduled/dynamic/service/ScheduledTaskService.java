@@ -19,17 +19,17 @@ public interface ScheduledTaskService {
     /**
      * 根据任务key 启动任务
      */
-    Boolean start(String taskKey);
+    Boolean start(Long id);
 
     /**
      * 根据任务key 停止任务
      */
-    Boolean stop(String taskKey);
+    Boolean stop(Long id);
 
     /**
      * 根据任务key 重启任务
      */
-    Boolean restart(String taskKey);
+    Boolean restart(Long id);
 
 
     /**

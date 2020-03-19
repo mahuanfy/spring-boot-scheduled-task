@@ -9,7 +9,7 @@ public class ScheduledTaskBean {
     /**
      * 任务key值 唯一
      */
-    private String taskKey;
+    private Long id;
     /**
      * 任务描述
      */
@@ -28,14 +28,16 @@ public class ScheduledTaskBean {
      * 当前是否已启动
      */
     private boolean startFlag;
+
+
     //省略 get/set
 
-    public String getTaskKey() {
-        return taskKey;
+    public Long getId() {
+        return id;
     }
 
-    public void setTaskKey(String taskKey) {
-        this.taskKey = taskKey;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTaskDesc() {

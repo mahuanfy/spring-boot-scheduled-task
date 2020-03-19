@@ -1,4 +1,4 @@
-package com.scheduled.config;
+package com.scheduled.dynamic.config;
 
 import com.scheduled.dynamic.bean.ScheduledTaskBean;
 import com.scheduled.dynamic.mapper.ScheduledTaskMapper;
@@ -15,19 +15,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * 定时任务配置类
- *
- * @author 码农猿
- */
 @Configuration
 public class ScheduledTaskConfig {
     @Autowired
     private ScheduledTaskMapper taskMapper;
 
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ScheduledTaskConfig.class);
 
     @Bean
@@ -48,17 +40,16 @@ public class ScheduledTaskConfig {
      * value : 执行接口实现
      */
     @Bean(name = "scheduledTaskJobMap")
-    public Map<String, ScheduledTaskJob> scheduledTaskJobMap() {
+    public Map<Long, ScheduledTaskJob> scheduledTaskJobMap() {
         List<ScheduledTaskBean> taskBeanList = taskMapper.getAllTask();
 
         if (taskBeanList.size() <= 0) {
             return new ConcurrentHashMap<>();
         }
-        Map<String, ScheduledTaskJob> scheduledTaskJobMap = new ConcurrentHashMap<>();
+        Map<Long, ScheduledTaskJob> scheduledTaskJobMap = new ConcurrentHashMap<>();
         for (ScheduledTaskBean scheduledTaskBean : taskBeanList) {
-            scheduledTaskJobMap.put(scheduledTaskBean.getTaskKey(), new ScheduledTask());
+            scheduledTaskJobMap.put(scheduledTaskBean.getId(), new ScheduledTask());
         }
         return scheduledTaskJobMap;
     }
-
 }

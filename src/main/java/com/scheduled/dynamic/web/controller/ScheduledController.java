@@ -33,8 +33,8 @@ public class ScheduledController {
      * 根据任务key => 启动任务
      */
     @RequestMapping("/start")
-    public String start(@RequestParam("taskKey") String taskKey) {
-        scheduledTaskService.start(taskKey);
+    public String start(@RequestParam("id") Long id) {
+        scheduledTaskService.start(id);
         return "start success";
     }
 
@@ -42,8 +42,8 @@ public class ScheduledController {
      * 根据任务key => 停止任务
      */
     @RequestMapping("/stop")
-    public String stop(@RequestParam("taskKey") String taskKey) {
-        scheduledTaskService.stop(taskKey);
+    public String stop(@RequestParam("id") Long id) {
+        scheduledTaskService.stop(id);
         return "stop success";
     }
 
@@ -51,8 +51,8 @@ public class ScheduledController {
      * 根据任务key => 重启任务
      */
     @RequestMapping("/restart")
-    public String restart(@RequestParam("taskKey") String taskKey) {
-        scheduledTaskService.restart(taskKey);
+    public String restart(@RequestParam("id") Long id) {
+        scheduledTaskService.restart(id);
         return "restart success";
     }
 
